@@ -24,7 +24,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 void randomize_list(string_vector & strings)
 {
-  // TODO: implement this function, then delete this comment
+
   int vector_size = strings.size(), random_num = 0;
   string s = "";
   srand(time(NULL));
