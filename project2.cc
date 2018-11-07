@@ -22,8 +22,20 @@ using namespace std;
 //-----------------------------------------------------------------------------
 // Randomize the order of all items in the list
 //-----------------------------------------------------------------------------
-void randomize_list(string_vector & strings) {
+void randomize_list(string_vector & strings)
+{
   // TODO: implement this function, then delete this comment
+  int vector_size = strings.size(), random_num = 0;
+  string s = "";
+  srand(time(NULL));
+  for (int i = 0; i < vector_size; i++)
+  {
+    random_num = rand() % (vector_size - 1);
+    s = strings[i];
+    strings[i] = strings[random_num];
+    strings[random_num] = s;
+  }
+
   return;
 }
 
@@ -36,7 +48,7 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 //-----------------------------------------------------------------------------
 // Sort the given list using the merge sort algorithm.
 // This is a recursive method which splits the list into two
-// parts, recursively calls itself on the two parts and then merges 
+// parts, recursively calls itself on the two parts and then merges
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
 void mergesort(string_vector & strings, size_t start, size_t end) {
@@ -58,7 +70,7 @@ int hoare_partition(string_vector & strings, int start, int end) {
 //-----------------------------------------------------------------------------
 // Sort the given list using the quicksort algorithm.
 // This is a recursive method which splits the list into two
-// parts, recursively calls itself on the two parts and then merges 
+// parts, recursively calls itself on the two parts and then merges
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
 void quicksort(string_vector & strings, int start, int end) {
@@ -69,7 +81,7 @@ void quicksort(string_vector & strings, int start, int end) {
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ALREADY IMPLEMENTED 
+// ALREADY IMPLEMENTED
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
@@ -78,7 +90,7 @@ void quicksort(string_vector & strings, int start, int end) {
 // cleared, and then each word from the file is added to the
 // vector. Returns true on success or fale on I/O error.
 //-----------------------------------------------------------------------------
-bool load_words(string_vector& words, const std::string& path) 
+bool load_words(string_vector& words, const std::string& path)
 {
   //std::cout << "Loading words from [" << path << "]" << std::endl;
   words.clear();
@@ -103,7 +115,7 @@ bool load_words(string_vector& words, const std::string& path)
 
 //-----------------------------------------------------------------------------
 // Sort the given list using the merge sort algorithm.
-// This method is simply a helper to make the initial 
+// This method is simply a helper to make the initial
 // call the recursive mergesort() method below that requires
 // first and last indexes for sorting range
 //-----------------------------------------------------------------------------
@@ -117,7 +129,7 @@ void mergesort(string_vector & strings) {
 
 //-----------------------------------------------------------------------------
 // Sort the given list using the quicksort algorithm.
-// This method is simply a helper to make the initial 
+// This method is simply a helper to make the initial
 // call the recursive mergesort() method below that requires
 // first and last indexes for sorting range
 //-----------------------------------------------------------------------------
@@ -128,4 +140,3 @@ void quicksort(string_vector & strings) {
   quicksort(strings, 0, strings.size() - 1);
   return;
 }
-
