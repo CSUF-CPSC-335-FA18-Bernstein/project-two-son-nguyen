@@ -42,6 +42,27 @@ void randomize_list(string_vector & strings)
 //-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
   // TODO: implement this function, then delete this comment
+
+  	if (strings[mid - 1] <= strings[mid])
+  		return;
+  	int i = start, j = mid;
+  	string_vector temp;
+
+  	while (i < mid && j <= end)
+  	{
+  		if (strings[i] > strings[j])
+  			temp.push_back(strings[j++]);
+  		else
+  			temp.push_back(strings[i++]);
+  	}
+
+  	while (i < mid)
+  		temp.push_back(strings[i++]);
+  	while (j <= end)
+  		temp.push_back(strings[j++]);
+
+  	strings.empty();
+  	strings = temp;
   return;
 }
 
@@ -64,7 +85,24 @@ void mergesort(string_vector & strings, size_t start, size_t end) {
 //-----------------------------------------------------------------------------
 int hoare_partition(string_vector & strings, int start, int end) {
   // TODO: implement this function, then delete this comment
-  return 0;
+  string pivot = strings[start];
+  int i = start, j = end + 1;
+  do
+  {
+    do
+    {
+      i++;
+    } while (i < end && strings[i] < pivot);
+    do
+    {
+      j--;
+    } while (strings[j] > pivot);
+    swap(strings[i], strings[j]);
+  } while (i < j);
+
+  swap(strings[i], strings[j]);
+  swap(strings[start], strings[j]);
+  return j;
 }
 
 //-----------------------------------------------------------------------------
@@ -75,6 +113,14 @@ int hoare_partition(string_vector & strings, int start, int end) {
 //-----------------------------------------------------------------------------
 void quicksort(string_vector & strings, int start, int end) {
   // TODO: implement this function, then delete this comment
+
+  	if (start < end)
+  	{
+  		int p = hoare_partition(strings, start, end);
+  		quicksort(strings, start, p - 1);
+  		quicksort(strings, p + 1, end);
+  	}
+
   return;
 }
 
