@@ -43,12 +43,12 @@ void randomize_list(string_vector & strings)
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
   // TODO: implement this function, then delete this comment
 
-  	if (strings[mid - 1] <= strings[mid])
+  	if (mid < end && strings[mid] <= strings[mid + 1])
   		return;
-  	int i = start, j = mid;
+  	int i = start, j = mid + 1;
   	string_vector temp;
 
-  	while (i < mid && j <= end)
+  	while (i <= mid && j <= end)
   	{
   		if (strings[i] > strings[j])
   			temp.push_back(strings[j++]);
@@ -56,13 +56,13 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
   			temp.push_back(strings[i++]);
   	}
 
-  	while (i < mid)
+  	while (i <= mid)
   		temp.push_back(strings[i++]);
   	while (j <= end)
   		temp.push_back(strings[j++]);
 
-  	strings.empty();
-  	strings = temp;
+    for (int i = 0; i < (int)temp.size(); i ++)
+      strings[start + i] = temp[i];
   return;
 }
 
@@ -74,6 +74,14 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 //-----------------------------------------------------------------------------
 void mergesort(string_vector & strings, size_t start, size_t end) {
   // TODO: implement this function, then delete this comment
+  if(start < end)
+  {
+    int mid = (start + end) / 2;
+    mergesort(strings, start, mid);
+    mergesort(strings, mid + 1, end);
+    merge(strings, start, mid, end);
+  }
+
   return;
 }
 
