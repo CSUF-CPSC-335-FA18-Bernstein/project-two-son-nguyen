@@ -35,13 +35,15 @@ void randomize_list(string_vector & strings)
     strings[i] = strings[random_num];
     strings[random_num] = s;
   }
-
   return;
 }
 
 //-----------------------------------------------------------------------------
+// Merge two sorted halves of a vector
+// The first half: [start .. mid] and the second half: [mid + 1 .. last]
+// After finishing, the string_vector strings is sorted
+//-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
-  // TODO: implement this function, then delete this comment
 
   	if (mid < end && strings[mid] <= strings[mid + 1])
   		return;
@@ -72,8 +74,8 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 // parts, recursively calls itself on the two parts and then merges
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
-void mergesort(string_vector & strings, size_t start, size_t end) {
-  // TODO: implement this function, then delete this comment
+void mergesort(string_vector & strings, size_t start, size_t end)
+{
   if(start < end)
   {
     int mid = (start + end) / 2;
@@ -81,7 +83,6 @@ void mergesort(string_vector & strings, size_t start, size_t end) {
     mergesort(strings, mid + 1, end);
     merge(strings, start, mid, end);
   }
-
   return;
 }
 
@@ -91,8 +92,8 @@ void mergesort(string_vector & strings, size_t start, size_t end) {
 // and divides the list into less than and greater than the pivot value
 // It returns the index of the final position of the pivot value.
 //-----------------------------------------------------------------------------
-int hoare_partition(string_vector & strings, int start, int end) {
-  // TODO: implement this function, then delete this comment
+int hoare_partition(string_vector & strings, int start, int end)
+{
   string pivot = strings[start];
   int i = start, j = end + 1;
   do
@@ -119,9 +120,8 @@ int hoare_partition(string_vector & strings, int start, int end) {
 // parts, recursively calls itself on the two parts and then merges
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
-void quicksort(string_vector & strings, int start, int end) {
-  // TODO: implement this function, then delete this comment
-
+void quicksort(string_vector & strings, int start, int end)
+{
   	if (start < end)
   	{
   		int p = hoare_partition(strings, start, end);
@@ -131,7 +131,6 @@ void quicksort(string_vector & strings, int start, int end) {
 
   return;
 }
-
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
