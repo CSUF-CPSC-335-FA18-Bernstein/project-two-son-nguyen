@@ -26,7 +26,7 @@ int main()
     return 1;
   }
   sort_n_increased(all_words);
-  sort_n_fixed(all_words);
+  //sort_n_fixed(all_words);
   return 0;
 }
 
