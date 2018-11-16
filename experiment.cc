@@ -25,24 +25,24 @@ int main()
     cerr << "error: cannot open \"words.txt\"" << endl;
     return 1;
   }
-  sort_n_increased(all_words);
-  //sort_n_fixed(all_words);
+  //sort_n_increased(all_words);
+  sort_n_fixed(all_words);
   return 0;
 }
 
 void sort_n_fixed(const string_vector& all_words)
 {
   string_vector n_words1, n_words2;
-  int n = 50000;
+  int n = 90000;
   Timer timer;
   double elapsed_1 = 0.00, elapsed_2 = 0.00;
 
-  cout << "\nRun 20 times with n = 50,000 to calculate the average and stdev\n\n";
+  cout << "\nRun 50 times with n = 90,000 to calculate the average and stdev\n\n";
   cout << "---------------------------\n";
   cout << "  n  |Merge Sort|Quick Sort\n";
   cout << "---------------------------\n";
 
-  for (int i = 0; i < 20; i++)
+  for (int i = 0; i < 50; i++)
   {
     n_words1.clear();
     n_words2.clear();
